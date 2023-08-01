@@ -19,7 +19,7 @@ const mdsvexOpts = {
 		}
 	},
 	rehypePlugins: [rehypeSlug],
-	remarkPlugins: [remarkUnwrapImages],
+	remarkPlugins: [remarkUnwrapImages]
 };
 
 /** @type {import('@sveltejs/kit').Config} */
