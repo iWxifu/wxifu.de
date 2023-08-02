@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { formatDate } from '$lib/utils';
-	import { Github, AtSign, Headphones, Rss } from 'lucide-svelte';
+	import { Github, AtSign, Headphones, Rss, Heart } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 	import { annotate } from 'rough-notation';
 	import * as config from '$lib/config';
@@ -9,7 +9,7 @@
 	onMount(() => {
 		const n2 = document.querySelector('#name');
 		// @ts-ignore
-		const a2 = annotate(n2, { type: 'underline', color: '#f38ba8' });
+		const a2 = annotate(n2, { type: 'underline', color: '#f38ba8', iterations: 3 });
 		a2.show();
 	});
 </script>
@@ -23,7 +23,7 @@
 		<div class="head-about">
 			<h1>Hey there, I'm <span id="name">Ruby</span>.</h1>
 			<div class="about-wrap">
-				<p class="about-info">I love embracing creativity through code, especially on the Web.</p>
+				<p class="about-info">Local Web Dev catgirl, living in your walls.</p>
 				<p class="about-info">
 					I've recently been interested in privacy and minimal or "bloat" free design. As such, I
 					mostly work with <span>Svelte</span>, <span>Astro</span> and
@@ -35,12 +35,14 @@
 					Aside of programming I'm interested in Music, Philosophy and Languages.
 				</p>
 				<div style="display: flex; gap: var(--size-fluid-1);">
-					<a href="https://github.com/iCynosis" target="_blank"><Github /></a>
+					<a href="https://github.com/iCynosis" target="_blank" title="GitHub"><Github /></a>
 					<a
 						href="https://open.spotify.com/user/5t5hhvmbf43vois9z6bxgx0y5?si=49a0f549cd07468d"
-						target="_blank"><Headphones /></a
+						target="_blank"
+						title="Spotify"><Headphones /></a
 					>
-					<a href="mailto:ruby@wxifu.de"><AtSign /></a>
+					<a href="https://lethallava.land/@ruby" title="fedi"><Heart /></a>
+					<a href="mailto:business@wxifu.de" title="mail me"><AtSign /></a>
 				</div>
 			</div>
 		</div>
@@ -84,11 +86,6 @@
 		border: 1px solid var(--border);
 	}
 
-	/* .post:not(:last-child) {
-		border-bottom: 1px solid var(--border);
-		padding-bottom: var(--size-7);
-	} */
-
 	.title {
 		font-size: var(--font-size-fluid-2);
 		text-transform: capitalize;
@@ -105,25 +102,43 @@
 
 	.head-grid {
 		display: flex;
-		flex-direction: row;
+
+		flex-direction: column;
 		gap: var(--size-4);
-		margin-top: var(--size-11);
+
 		margin-bottom: var(--size-8);
 	}
 
+	@media (min-width: 768px) {
+		.head-grid {
+			margin-top: var(--size-11);
+			flex-direction: row;
+		}
+	}
+
 	.head-about {
-		width: 70%;
+		width: 100%;
 		/* opacity: 0; */
+	}
+
+	.head-icon {
+		width: 100%;
+	}
+
+	@media (min-width: 768px) {
+		.head-about {
+			width: 70%;
+		}
+
+		.head-icon {
+			width: 30%;
+		}
 	}
 
 	.head-about h1 {
 		font-size: var(--font-size-fluid-3);
 		font-weight: 700;
 		margin-bottom: 1rem;
-	}
-
-	.head-icon {
-		width: 30%;
 	}
 
 	.about-info {
